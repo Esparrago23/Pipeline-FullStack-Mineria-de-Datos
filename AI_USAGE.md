@@ -1,15 +1,25 @@
-# Declaración de uso de IA
+# Declaracion de uso de IA
+
 ## Herramientas usadas
-- Claude / ChatGPT / Copilot / etc.
-## Qué generé con IA
-- Pipeline inicial con ColumnTransformer (prompt: "...")
-- Sintaxis de cross_val_score con scoring custom
-- Gráfica de matriz de confusión
-## Qué entendí y modifiqué yo
-- Cambié RandomForestRegressor por Ridge porque el rubro pedía un modelo lineal
-regularizado
-- Reescribí el manejo de NaN en TotalCharges porque la sugerencia de IA imputaba con la
-media y yo decidí eliminar esas filas porque son solo 11 (decisión defendible en la
-oral)
-## Qué NO sé explicar de lo que generó la IA
-- (Sé honesto. Esto es exactamente lo que te voy a preguntar.)
+
+- ChatGPT / Codex.
+
+## Que genere con IA
+
+- Organizacion del proyecto en tres notebooks por capa.
+- Codigo base para EDA, preprocesamiento, warehouse DuckDB y modelado.
+- README con pasos de entorno virtual, descarga de CSV reducidos y orden de ejecucion.
+- Guia del dataset y del codigo en `docs/guia_dataset_y_codigo.md`.
+
+## Que entendi y modifique yo
+
+- Se eligio NASA Exoplanet Archive porque el proyecto tiene una narrativa cientifica clara.
+- Se decidio usar Kepler KOI como dataset principal y PSCompPars como referencia de planetas confirmados.
+- Se corrigio la clasificacion para usar `koi_disposition` como `CONFIRMED` vs `NO_CONFIRMED`, asi las metricas coinciden con la diapositiva.
+- Se pidio quitar metricas que no estaban en la diapositiva, como `balanced_accuracy`, `f1_macro` y `f1_weighted`.
+- Se cambio regresion para quedarse con modelos mas faciles de defender en clase: regresion lineal, Ridge y Lasso.
+- Se excluyeron columnas de fuga como `koi_score`, `koi_pdisposition` y `koi_fpflag_*`.
+
+## Que NO se explicar de lo que genero la IA
+
+- Nada queda como caja negra intencionalmente. La guia del proyecto explica las columnas, el flujo por capas, las metricas y las decisiones principales.
