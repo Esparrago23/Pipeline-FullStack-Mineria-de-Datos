@@ -37,6 +37,7 @@ from .config import (
     REGRESSION_MODEL_PATH,
     ensure_project_dirs,
     json_safe,
+    project_relative,
 )
 
 
@@ -266,8 +267,8 @@ def run_modeling() -> dict[str, Any]:
 
     metadata = json_safe(
         {
-            "classification_model_path": str(CLASSIFICATION_MODEL_PATH),
-            "regression_model_path": str(REGRESSION_MODEL_PATH),
+            "classification_model_path": project_relative(CLASSIFICATION_MODEL_PATH),
+            "regression_model_path": project_relative(REGRESSION_MODEL_PATH),
             "classification_features": CLASSIFICATION_FEATURES,
             "regression_features": REGRESSION_FEATURES,
             "classification_defaults": classification_defaults,

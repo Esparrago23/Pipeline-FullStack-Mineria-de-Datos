@@ -1,122 +1,251 @@
-# Proyecto de mineria - Exoplanetas Kepler
+# Pipeline Full Stack de Mineria de Datos - Exoplanetas Kepler
 
-Proyecto de mineria de datos usando NASA Exoplanet Archive con dos fuentes:
+Proyecto de corte para Mineria de Datos. El sistema integra EDA, preprocesamiento, warehouse en DuckDB, modelos de clasificacion/regresion, API con FastAPI y frontend web basico en HTML, CSS y JavaScript.
 
-- `cumulative` / Kepler Objects of Interest (KOI): senales candidatas observadas por Kepler.
-- `pscomppars`: planetas confirmados de NASA Exoplanet Archive para referencia y capa analitica.
+El proyecto ejecutable no depende de notebooks. Todo lo necesario para reconstruir los resultados esta en scripts dentro de `backend/pipeline` y en la aplicacion dentro de `backend/app` y `frontend`.
 
-El proyecto esta dividido por capas:
+## Objetivo del sistema
 
-1. `mineria/01_analisis_eda_preprocesamiento.ipynb` - Capa de analisis.
-2. `mineria/02_capa_datos_warehouse.ipynb` - Capa de datos / DuckDB / OLAP.
-3. `mineria/03_capa_modelado.ipynb` - Capa de modelado.
+El proyecto usa datos reales de NASA Exoplanet Archive para responder dos preguntas:
 
-## 1. Crear entorno virtual
+- Clasificacion: decidir si una senal de Kepler se parece a un exoplaneta confirmado (`CONFIRMED`) o a una senal no confirmada (`NO_CONFIRMED`).
+- Regresion: estimar el radio planetario en radios terrestres usando `log1p(koi_prad)` para reducir el efecto de valores extremos.
 
-Ejecutar desde la carpeta raiz del proyecto:
+Importante: la app no confirma exoplanetas cientificamente. La app calcula una prediccion basada en patrones historicos del dataset; la confirmacion real pertenece al proceso cientifico de NASA.
+
+## Estructura del repositorio
+
+```text
+backend/
+  app/
+    main.py                         API FastAPI y servidor del frontend
+  pipeline/
+    analysis_preprocessing.py       EDA y preprocesamiento reproducible
+    warehouse.py                    Warehouse DuckDB y consultas OLAP
+    modeling.py                     Entrenamiento de clasificacion y regresion
+    run_pipeline.py                 Ejecuta todo el pipeline en orden
+    download_data.py                Descarga opcional de CSV crudos desde NASA
+    config.py                       Rutas, columnas y configuracion compartida
+  data/
+    raw/                            CSV crudos incluidos para reproducibilidad
+    processed/                      CSV generados por preprocesamiento
+    warehouse/                      Base DuckDB generada por el pipeline
+  models/                           Modelos generados por el pipeline
+  reports/                          JSON con resumenes y metricas
+frontend/
+  index.html                        Interfaz web
+  styles.css                        Estilos
+  app.js                            Consumo de la API real
+AI_USAGE.md                         Declaracion de uso de IA
+requirements.txt                    Dependencias Python
+README.md                           Este archivo
+```
+
+## Requisitos
+
+- Python 3.10 o superior.
+- PowerShell en Windows.
+- Conexion a internet solo si se quieren volver a descargar los CSV desde NASA. Los CSV crudos ya estan incluidos en `backend/data/raw`.
+
+## Reproduccion exacta desde cero
+
+Ejecutar todos los comandos desde la raiz del repositorio.
+
+### 1. Crear y activar entorno virtual
 
 ```powershell
 py -m venv .venv
 .\.venv\Scripts\activate
 python -m pip install --upgrade pip
-python -m pip install pandas numpy scipy scikit-learn plotly duckdb jupyter nbformat ipykernel
-python -m ipykernel install --user --name mineria-exoplanetas --display-name "Python (mineria-exoplanetas)"
+python -m pip install -r requirements.txt
 ```
 
-Si VS Code pregunta por kernel, elegir `Python (mineria-exoplanetas)`.
+### 2. Verificar datos crudos
 
-## 2. Descargar los CSV reducidos
-
-No descargar con `select *`, porque trae demasiadas columnas y vuelve dificil explicar el proyecto. Estos comandos descargan solo las columnas que se usan en el trabajo.
+Los dos archivos deben existir:
 
 ```powershell
-New-Item -ItemType Directory -Force mineria\data | Out-Null
-
-$keplerCols = @(
-  "kepid", "kepoi_name", "kepler_name", "koi_disposition", "koi_pdisposition",
-  "koi_score", "koi_fpflag_nt", "koi_fpflag_ss", "koi_fpflag_co", "koi_fpflag_ec",
-  "koi_period", "koi_period_err1", "koi_period_err2",
-  "koi_time0bk", "koi_time0bk_err1", "koi_time0bk_err2",
-  "koi_impact", "koi_impact_err1", "koi_impact_err2",
-  "koi_duration", "koi_duration_err1", "koi_duration_err2",
-  "koi_depth", "koi_depth_err1", "koi_depth_err2",
-  "koi_prad", "koi_prad_err1", "koi_prad_err2",
-  "koi_teq", "koi_teq_err1", "koi_teq_err2",
-  "koi_insol", "koi_insol_err1", "koi_insol_err2",
-  "koi_model_snr", "koi_tce_plnt_num", "koi_tce_delivname",
-  "koi_steff", "koi_steff_err1", "koi_steff_err2",
-  "koi_slogg", "koi_slogg_err1", "koi_slogg_err2",
-  "koi_srad", "koi_srad_err1", "koi_srad_err2",
-  "ra", "dec", "koi_kepmag"
-) -join ","
-
-$keplerQuery = [uri]::EscapeDataString("select $keplerCols from cumulative")
-Invoke-WebRequest `
-  -Uri "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=$keplerQuery&format=csv" `
-  -OutFile "mineria\data\cumulative_2026.06.01_20.09.17.csv"
-
-$psCols = @(
-  "pl_name", "hostname", "sy_snum", "sy_pnum", "discoverymethod", "disc_year", "disc_facility",
-  "pl_controv_flag", "pl_orbper", "pl_orbpererr1", "pl_orbpererr2", "pl_orbperlim",
-  "pl_orbsmax", "pl_orbsmaxerr1", "pl_orbsmaxerr2", "pl_orbsmaxlim",
-  "pl_rade", "pl_radeerr1", "pl_radeerr2", "pl_radelim",
-  "pl_radj", "pl_radjerr1", "pl_radjerr2", "pl_radjlim",
-  "pl_bmasse", "pl_bmasseerr1", "pl_bmasseerr2", "pl_bmasselim",
-  "pl_bmassj", "pl_bmassjerr1", "pl_bmassjerr2", "pl_bmassjlim",
-  "pl_bmassprov", "pl_orbeccen", "pl_orbeccenerr1", "pl_orbeccenerr2", "pl_orbeccenlim",
-  "pl_insol", "pl_insolerr1", "pl_insolerr2", "pl_insollim",
-  "pl_eqt", "pl_eqterr1", "pl_eqterr2", "pl_eqtlim", "ttv_flag",
-  "st_spectype", "st_teff", "st_tefferr1", "st_tefferr2", "st_tefflim",
-  "st_rad", "st_raderr1", "st_raderr2", "st_radlim",
-  "st_mass", "st_masserr1", "st_masserr2", "st_masslim",
-  "st_met", "st_meterr1", "st_meterr2", "st_metlim", "st_metratio",
-  "st_logg", "st_loggerr1", "st_loggerr2", "st_logglim",
-  "rastr", "ra", "decstr", "dec",
-  "sy_dist", "sy_disterr1", "sy_disterr2",
-  "sy_vmag", "sy_vmagerr1", "sy_vmagerr2",
-  "sy_kmag", "sy_kmagerr1", "sy_kmagerr2",
-  "sy_gaiamag", "sy_gaiamagerr1", "sy_gaiamagerr2"
-) -join ","
-
-$psQuery = [uri]::EscapeDataString("select $psCols from pscomppars")
-Invoke-WebRequest `
-  -Uri "https://exoplanetarchive.ipac.caltech.edu/TAP/sync?query=$psQuery&format=csv" `
-  -OutFile "mineria\data\PSCompPars_2026.06.01_20.09.10.csv"
+Test-Path backend\data\raw\cumulative_2026.06.01_20.09.17.csv
+Test-Path backend\data\raw\PSCompPars_2026.06.01_20.09.10.csv
 ```
 
-## 3. Ejecutar notebooks
+Resultado esperado:
 
-Abrir la carpeta `mineria` en Jupyter o VS Code y ejecutar en este orden:
+```text
+True
+True
+```
+
+Si alguno no existe, descargarlos con:
 
 ```powershell
-jupyter lab mineria
+python -m backend.pipeline.download_data
 ```
 
-1. `01_analisis_eda_preprocesamiento.ipynb`
-   - Carga los CSV reducidos.
-   - Hace EDA: `df.info()`, `df.describe()`, nulos, distribuciones, correlacion y outliers.
-   - Limpia espacios en blanco y prepara variables.
-   - Guarda:
-     - `mineria/data/processed/kepler_koi_processed.csv`
-     - `mineria/data/processed/pscomppars_processed.csv`
+Si se quiere forzar una descarga nueva y sobrescribir los CSV:
 
-2. `02_capa_datos_warehouse.ipynb`
-   - Usa los CSV procesados.
-   - Construye el modelo dimensional en DuckDB.
-   - Crea:
-     - `mineria/data/warehouse/exoplanets.duckdb`
-   - Ejecuta consultas OLAP: roll-up, drill-down, slice/dice, pivot, CUBE, ROLLUP y GROUPING SETS.
+```powershell
+python -m backend.pipeline.download_data --force
+```
 
-3. `03_capa_modelado.ipynb`
-   - Usa el DuckDB creado por la capa de datos.
-   - Clasifica `koi_disposition` como `CONFIRMED` vs `NO_CONFIRMED`.
-   - Predice `log1p(koi_prad)` para la tarea de regresion.
-   - Evalua con metricas vistas en clase y evita fuga de datos usando `Pipeline`.
+### 3. Ejecutar el pipeline completo
 
-## 4. Guia del dataset y del codigo
+```powershell
+python -m backend.pipeline.run_pipeline
+```
 
-La explicacion detallada esta en:
+Este comando ejecuta, en orden:
 
-- `docs/guia_dataset_y_codigo.md`
+1. `analysis_preprocessing.py`: carga CSV crudos, limpia datos, genera CSV procesados y resumen EDA.
+2. `warehouse.py`: construye `backend/data/warehouse/exoplanets.duckdb` con tablas de hechos, dimensiones, vistas y consultas OLAP.
+3. `modeling.py`: entrena modelos de clasificacion y regresion con `Pipeline` de scikit-learn, sin fuga de datos.
 
-Ese documento explica que significa cada grupo de columnas, por que se eligieron, como se diseno el warehouse y como defender el codigo de cada capa.
+Salida esperada al final:
+
+```json
+{
+  "status": "ok",
+  "analysis": { "...": "..." },
+  "warehouse": { "...": "..." },
+  "modeling": {
+    "classification_best_model": "arbol_decision",
+    "regression_best_model": "regresion_lineal"
+  }
+}
+```
+
+El pipeline genera o actualiza:
+
+```text
+backend/data/processed/kepler_koi_processed.csv
+backend/data/processed/pscomppars_processed.csv
+backend/data/warehouse/exoplanets.duckdb
+backend/models/classification_model.joblib
+backend/models/regression_model.joblib
+backend/models/model_metadata.json
+backend/reports/analysis_summary.json
+backend/reports/warehouse_summary.json
+backend/reports/model_metrics.json
+```
+
+### 4. Revisar metricas principales
+
+```powershell
+python -c "import json; m=json.load(open('backend/reports/model_metrics.json')); print(m['classification']['best_model']); print(m['regression']['best_model'])"
+```
+
+Resultado esperado:
+
+```text
+arbol_decision
+regresion_lineal
+```
+
+Metricas actuales despues de ejecutar el pipeline:
+
+- Clasificacion: mejor modelo `arbol_decision`; Accuracy aproximado `0.842`; Precision `0.707`; Recall `0.765`; F1 `0.735`.
+- Regresion: mejor modelo `regresion_lineal`; `R2_log` aproximado `0.443`.
+
+La clasificacion se decide por F1 para la clase `CONFIRMED`, no por accuracy sola. La regresion se evalua principalmente en escala log porque existen radios planetarios extremos.
+
+### 5. Arrancar backend y frontend
+
+```powershell
+python -m uvicorn backend.app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Abrir en el navegador:
+
+```text
+http://127.0.0.1:8000
+```
+
+Documentacion interactiva de la API:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+### 6. Verificar que la API esta lista
+
+Con el servidor corriendo, abrir otra terminal PowerShell desde la raiz del proyecto y ejecutar:
+
+```powershell
+Invoke-RestMethod http://127.0.0.1:8000/api/health
+```
+
+Resultado esperado despues de correr el pipeline:
+
+```text
+status                      : ok
+warehouse_exists            : True
+classification_model_exists : True
+regression_model_exists     : True
+```
+
+## Uso de la aplicacion
+
+La interfaz web consume el backend real. No usa imagenes estaticas ni resultados copiados a mano.
+
+Apartados principales:
+
+- Ejecucion: permite correr el pipeline desde la API.
+- Metricas generales: resume tamano de datasets y mejores modelos.
+- Clasificacion: compara los algoritmos vistos en clase y muestra matriz de confusion.
+- Regresion: muestra el ajuste del modelo para radio planetario.
+- Consultas OLAP: consulta el warehouse DuckDB desde el frontend.
+- Evaluar candidato: envia datos al backend y muestra al mismo tiempo clase estimada y radio estimado.
+
+## Endpoints principales
+
+```text
+GET  /api/health
+POST /api/pipeline/run
+GET  /api/summary
+GET  /api/olap
+GET  /api/olap/{query_name}
+GET  /api/prediction-sample
+POST /api/predict/classification
+POST /api/predict/regression
+```
+
+Ejemplo rapido de prediccion desde PowerShell:
+
+```powershell
+$body = @{
+  features = @{
+    koi_period = 6.002548
+    koi_impact = 0.914
+    koi_duration = 4.1628
+    koi_depth = 202.0
+    koi_teq = 1209
+    koi_insol = 504.79
+    koi_model_snr = 71.6
+    koi_steff = 6204
+    koi_slogg = 4.269
+    koi_srad = 1.360
+    ra = 290.49512
+    dec = 38.795479
+    koi_kepmag = 12.730
+  }
+} | ConvertTo-Json -Depth 4
+
+Invoke-RestMethod `
+  -Uri http://127.0.0.1:8000/api/predict/classification `
+  -Method POST `
+  -ContentType "application/json" `
+  -Body $body
+```
+
+## Decisiones metodologicas principales
+
+- Dataset principal: Kepler Objects of Interest (`cumulative`).
+- Dataset de referencia analitica: planetas confirmados (`pscomppars`).
+- Objetivo de clasificacion: `koi_disposition`, convertido a `CONFIRMED` contra `NO_CONFIRMED`.
+- Objetivo de regresion: `log1p(koi_prad)`.
+- Columnas excluidas por fuga: `koi_score`, `koi_pdisposition`, `koi_fpflag_nt`, `koi_fpflag_ss`, `koi_fpflag_co`, `koi_fpflag_ec`.
+- Separacion train/test antes de entrenar.
+- Imputacion y escalado dentro de `Pipeline`, ajustados solo con train.
+- Clasificacion comparada con regresion logistica, K-NN, arbol de decision y Naive Bayes.
+- Regresion comparada con regresion lineal, Ridge y Lasso.
+

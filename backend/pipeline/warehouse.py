@@ -16,6 +16,7 @@ from .config import (
     dataframe_records,
     ensure_project_dirs,
     json_safe,
+    project_relative,
 )
 
 
@@ -431,7 +432,7 @@ def run_warehouse() -> dict[str, Any]:
 
         summary = json_safe(
             {
-                "duckdb_path": str(DUCKDB_PATH),
+                "duckdb_path": project_relative(DUCKDB_PATH),
                 "tables": {name: {"filas": len(df), "columnas": df.shape[1]} for name, df in tables.items()},
                 "olap_queries": sorted(OLAP_QUERIES),
                 "sample_olap": {

@@ -23,6 +23,7 @@ from .config import (
     REGRESSION_FEATURES,
     ensure_project_dirs,
     json_safe,
+    project_relative,
 )
 
 
@@ -325,7 +326,7 @@ def build_analysis_summary(
 
     return json_safe(
         {
-            "data_dir": str(DATA_DIR),
+            "data_dir": project_relative(DATA_DIR),
             "raw": [
                 summarize_dataframe("Kepler KOI cumulative", kepler),
                 summarize_dataframe("PSCompPars", pscomppars),

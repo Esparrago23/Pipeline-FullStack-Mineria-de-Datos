@@ -1,4 +1,6 @@
-\.venv
-\.tmp_repos
+.venv/
+.tmp_repos/
 __pycache__/
 *.pyc
+.pytest_cache/
+*.duckdb.wal

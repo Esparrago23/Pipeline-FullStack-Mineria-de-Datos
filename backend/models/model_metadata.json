@@ -1,0 +1,61 @@
+{
+  "classification_model_path": "backend/models/classification_model.joblib",
+  "regression_model_path": "backend/models/regression_model.joblib",
+  "classification_features": [
+    "koi_period",
+    "koi_impact",
+    "koi_duration",
+    "koi_depth",
+    "koi_teq",
+    "koi_insol",
+    "koi_model_snr",
+    "koi_steff",
+    "koi_slogg",
+    "koi_srad",
+    "ra",
+    "dec",
+    "koi_kepmag"
+  ],
+  "regression_features": [
+    "koi_period",
+    "koi_impact",
+    "koi_duration",
+    "koi_teq",
+    "koi_insol",
+    "koi_model_snr",
+    "koi_steff",
+    "koi_slogg",
+    "ra",
+    "dec",
+    "koi_kepmag"
+  ],
+  "classification_defaults": {
+    "koi_period": 9.75283067,
+    "koi_impact": 0.537,
+    "koi_duration": 3.7926,
+    "koi_depth": 421.1,
+    "koi_teq": 878.0,
+    "koi_insol": 141.6,
+    "koi_model_snr": 23.0,
+    "koi_steff": 5766.0,
+    "koi_slogg": 4.438,
+    "koi_srad": 1.0,
+    "ra": 292.261125,
+    "dec": 43.6775035,
+    "koi_kepmag": 14.52
+  },
+  "regression_defaults": {
+    "koi_period": 9.296746368,
+    "koi_impact": 0.537,
+    "koi_duration": 3.82433,
+    "koi_teq": 878.0,
+    "koi_insol": 140.73,
+    "koi_model_snr": 23.0,
+    "koi_steff": 5766.0,
+    "koi_slogg": 4.438,
+    "ra": 292.26291,
+    "dec": 43.680962,
+    "koi_kepmag": 14.531
+  },
+  "preprocessing": "SimpleImputer + StandardScaler dentro de Pipeline ajustado solo con train"
+}

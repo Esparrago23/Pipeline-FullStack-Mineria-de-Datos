@@ -40,6 +40,10 @@ LEAKAGE_COLUMNS = [
     "koi_fpflag_ec",
 ]
 
+
+def project_relative(path: Path) -> str:
+    return path.resolve().relative_to(PROJECT_ROOT.resolve()).as_posix()
+
 CLASSIFICATION_FEATURES = [
     "koi_period",
     "koi_impact",
