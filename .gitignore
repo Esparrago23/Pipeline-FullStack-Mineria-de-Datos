@@ -1,2 +1,4 @@
 \.venv
 \.tmp_repos
+__pycache__/
+*.pyc
