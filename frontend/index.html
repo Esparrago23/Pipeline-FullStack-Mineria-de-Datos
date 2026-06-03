@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exoplanetas Kepler</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Pipeline Full Stack</p>
+        <h1>Exoplanetas Kepler</h1>
+      </div>
+      <div class="status-pill" id="api-status">Conectando</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel summary-panel" aria-labelledby="summary-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Sistema</p>
+            <h2 id="summary-title">Estado del pipeline</h2>
+          </div>
+          <button class="icon-button" id="refresh-button" type="button" title="Actualizar datos">↻</button>
+        </div>
+        <div class="metric-grid">
+          <article class="metric">
+            <span>Filas cargadas</span>
+            <strong id="rows-loaded">0</strong>
+          </article>
+          <article class="metric">
+            <span>Modelos</span>
+            <strong id="models-ready">-</strong>
+          </article>
+          <article class="metric">
+            <span>CONFIRMED</span>
+            <strong id="confirmed-count">0</strong>
+          </article>
+          <article class="metric">
+            <span>NO_CONFIRMED</span>
+            <strong id="no-confirmed-count">0</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel prediction-panel" aria-labelledby="prediction-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Inferencia</p>
+            <h2 id="prediction-title">Predicción en vivo</h2>
+          </div>
+          <button class="primary-button" id="predict-button" type="button">Predecir</button>
+        </div>
+
+        <form id="prediction-form" class="feature-grid"></form>
+
+        <div class="result-grid">
+          <article class="result">
+            <span>Clasificación</span>
+            <strong id="predicted-class">-</strong>
+          </article>
+          <article class="result">
+            <span>Prob. CONFIRMED</span>
+            <strong id="confirmed-probability">-</strong>
+          </article>
+          <article class="result">
+            <span>Radio estimado</span>
+            <strong id="predicted-radius">-</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="panel olap-panel" aria-labelledby="olap-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">OLAP</p>
+            <h2 id="olap-title">Consultas del warehouse</h2>
+          </div>
+          <div class="tabs" role="tablist" aria-label="Consultas OLAP">
+            <button class="tab is-active" data-table="disposition" type="button">Disposición</button>
+            <button class="tab" data-table="drilldown" type="button">Drill-down</button>
+            <button class="tab" data-table="habitable" type="button">Slice</button>
+            <button class="tab" data-table="pivot" type="button">Pivot</button>
+            <button class="tab" data-table="cube" type="button">Cubo</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead id="olap-head"></thead>
+            <tbody id="olap-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel records-panel" aria-labelledby="records-title">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Muestra</p>
+            <h2 id="records-title">Candidatos con mayor SNR</h2>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead id="records-head"></thead>
+            <tbody id="records-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="./app.js"></script>
+  </body>
+</html>

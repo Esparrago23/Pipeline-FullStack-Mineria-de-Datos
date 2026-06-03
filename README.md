@@ -10,17 +10,33 @@ El proyecto esta dividido por capas:
 1. `mineria/01_analisis_eda_preprocesamiento.ipynb` - Capa de analisis.
 2. `mineria/02_capa_datos_warehouse.ipynb` - Capa de datos / DuckDB / OLAP.
 3. `mineria/03_capa_modelado.ipynb` - Capa de modelado.
+4. `backend/main.py` - API FastAPI para OLAP e inferencia.
+5. `frontend/index.html` - Interfaz HTML/CSS/JS que consume la API.
 
 ## 1. Crear entorno virtual
 
 Ejecutar desde la carpeta raiz del proyecto:
 
 ```powershell
-py -m venv .venv
-.\.venv\Scripts\activate
+py -m venv venv
+.\venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
-python -m pip install pandas numpy scipy scikit-learn plotly duckdb jupyter nbformat ipykernel
+python -m pip install -r requirements.txt
 python -m ipykernel install --user --name mineria-exoplanetas --display-name "Python (mineria-exoplanetas)"
+```
+
+Si PowerShell muestra el error `la ejecucion de scripts esta deshabilitada`, habilita la activacion solo para esa terminal y vuelve a activar el entorno:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass -Force
+.\venv\Scripts\Activate.ps1
+```
+
+Tambien puedes evitar la activacion y ejecutar Python directamente desde el entorno:
+
+```powershell
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
+.\venv\Scripts\python.exe -m jupyter lab mineria
 ```
 
 Si VS Code pregunta por kernel, elegir `Python (mineria-exoplanetas)`.
@@ -89,7 +105,7 @@ Invoke-WebRequest `
 Abrir la carpeta `mineria` en Jupyter o VS Code y ejecutar en este orden:
 
 ```powershell
-jupyter lab mineria
+python -m jupyter lab mineria
 ```
 
 1. `01_analisis_eda_preprocesamiento.ipynb`
@@ -113,7 +129,35 @@ jupyter lab mineria
    - Predice `log1p(koi_prad)` para la tarea de regresion.
    - Evalua con metricas vistas en clase y evita fuga de datos usando `Pipeline`.
 
-## 4. Guia del dataset y del codigo
+## 4. Ejecutar la aplicacion full stack
+
+El backend necesita que ya exista:
+
+- `mineria/data/warehouse/exoplanets.duckdb`
+
+Ese archivo se crea al ejecutar `02_capa_datos_warehouse.ipynb`.
+
+Desde la raiz del proyecto:
+
+```powershell
+python -m uvicorn backend.main:app --reload
+```
+
+Abrir en el navegador:
+
+- `http://127.0.0.1:8000`
+
+Endpoints principales:
+
+- `GET /api/health`
+- `GET /api/olap/disposition`
+- `GET /api/olap/drilldown`
+- `GET /api/olap/habitable-slice`
+- `GET /api/olap/pivot`
+- `GET /api/olap/cube`
+- `POST /api/predict`
+
+## 5. Guia del dataset y del codigo
 
 La explicacion detallada esta en:
 

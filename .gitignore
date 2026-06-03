@@ -1,2 +1,7 @@
-\.venv
-\.tmp_repos
+.venv/
+venv/
+.tmp_repos/
+.tmp_notebook_runs/
+mineria/data/warehouse/
+__pycache__/
+*.py[cod]

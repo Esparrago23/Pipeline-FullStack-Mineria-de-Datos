@@ -8,6 +8,8 @@
 
 - Organizacion del proyecto en tres notebooks por capa.
 - Codigo base para EDA, preprocesamiento, warehouse DuckDB y modelado.
+- Backend en FastAPI para consultar OLAP y hacer inferencia en vivo.
+- Frontend sencillo en HTML, CSS y JavaScript para consumir la API.
 - README con pasos de entorno virtual, descarga de CSV reducidos y orden de ejecucion.
 - Guia del dataset y del codigo en `docs/guia_dataset_y_codigo.md`.
 
