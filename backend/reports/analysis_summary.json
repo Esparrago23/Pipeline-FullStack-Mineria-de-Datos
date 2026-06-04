@@ -1,0 +1,1423 @@
+{
+  "data_dir": "backend/data",
+  "raw": [
+    {
+      "dataset": "Kepler KOI cumulative",
+      "filas": 9564,
+      "columnas": 49,
+      "filas_duplicadas": 0,
+      "celdas_nulas": 40104,
+      "pct_nulos_total": 8.56,
+      "columnas_con_nulos": 36
+    },
+    {
+      "dataset": "PSCompPars",
+      "filas": 6291,
+      "columnas": 84,
+      "filas_duplicadas": 0,
+      "celdas_nulas": 78176,
+      "pct_nulos_total": 14.79,
+      "columnas_con_nulos": 71
+    }
+  ],
+  "processed": [
+    {
+      "dataset": "kepler_koi_processed",
+      "filas": 9564,
+      "columnas": 19,
+      "filas_duplicadas": 0,
+      "celdas_nulas": 10406,
+      "pct_nulos_total": 5.73,
+      "columnas_con_nulos": 12
+    },
+    {
+      "dataset": "pscomppars_processed",
+      "filas": 6291,
+      "columnas": 15,
+      "filas_duplicadas": 0,
+      "celdas_nulas": 2671,
+      "pct_nulos_total": 2.83,
+      "columnas_con_nulos": 9
+    }
+  ],
+  "attribute_types_kepler": [
+    {
+      "columna": "koi_tce_delivname",
+      "dtype_pandas": "string",
+      "tipo_dato": "nominal",
+      "uso": "analisis",
+      "n_unique": 3,
+      "n_missing": 346,
+      "pct_missing": 3.62,
+      "ejemplos": [
+        "q1_q17_dr25_tce",
+        "q1_q16_tce",
+        "q1_q17_dr24_tce"
+      ]
+    },
+    {
+      "columna": "koi_teq_err1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 0,
+      "n_missing": 9564,
+      "pct_missing": 100.0,
+      "ejemplos": []
+    },
+    {
+      "columna": "koi_teq_err2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 0,
+      "n_missing": 9564,
+      "pct_missing": 100.0,
+      "ejemplos": []
+    },
+    {
+      "columna": "koi_steff_err2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 376,
+      "n_missing": 483,
+      "pct_missing": 5.05,
+      "ejemplos": [
+        "-81.0",
+        "-176.0",
+        "-174.0",
+        "-211.0"
+      ]
+    },
+    {
+      "columna": "koi_slogg_err1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 553,
+      "n_missing": 468,
+      "pct_missing": 4.89,
+      "ejemplos": [
+        "0.064",
+        "0.044",
+        "0.053",
+        "0.07"
+      ]
+    },
+    {
+      "columna": "koi_slogg_err2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 430,
+      "n_missing": 468,
+      "pct_missing": 4.89,
+      "ejemplos": [
+        "-0.096",
+        "-0.176",
+        "-0.168",
+        "-0.21"
+      ]
+    },
+    {
+      "columna": "koi_srad_err1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 1162,
+      "n_missing": 468,
+      "pct_missing": 4.89,
+      "ejemplos": [
+        "0.105",
+        "0.233",
+        "0.201",
+        "0.334"
+      ]
+    },
+    {
+      "columna": "koi_srad_err2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 1384,
+      "n_missing": 468,
+      "pct_missing": 4.89,
+      "ejemplos": [
+        "-0.061",
+        "-0.078",
+        "-0.067",
+        "-0.133"
+      ]
+    },
+    {
+      "columna": "koi_steff_err1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 265,
+      "n_missing": 468,
+      "pct_missing": 4.89,
+      "ejemplos": [
+        "81.0",
+        "158.0",
+        "157.0",
+        "169.0"
+      ]
+    },
+    {
+      "columna": "koi_depth_err1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 1428,
+      "n_missing": 454,
+      "pct_missing": 4.75,
+      "ejemplos": [
+        "19.5",
+        "35.5",
+        "171.0",
+        "12.8"
+      ]
+    },
+    {
+      "columna": "koi_depth_err2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 1428,
+      "n_missing": 454,
+      "pct_missing": 4.75,
+      "ejemplos": [
+        "-19.5",
+        "-35.5",
+        "-171.0",
+        "-12.8"
+      ]
+    },
+    {
+      "columna": "koi_duration_err1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2264,
+      "n_missing": 454,
+      "pct_missing": 4.75,
+      "ejemplos": [
+        "0.0819",
+        "0.116",
+        "0.0341",
+        "0.00537"
+      ]
+    },
+    {
+      "columna": "koi_duration_err2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2264,
+      "n_missing": 454,
+      "pct_missing": 4.75,
+      "ejemplos": [
+        "-0.0819",
+        "-0.116",
+        "-0.0341",
+        "-0.00537"
+      ]
+    },
+    {
+      "columna": "koi_impact_err1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2217,
+      "n_missing": 454,
+      "pct_missing": 4.75,
+      "ejemplos": [
+        "0.318",
+        "0.059",
+        "5.126",
+        "0.115"
+      ]
+    },
+    {
+      "columna": "koi_impact_err2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 1884,
+      "n_missing": 454,
+      "pct_missing": 4.75,
+      "ejemplos": [
+        "-0.146",
+        "-0.443",
+        "-0.077",
+        "-0.092"
+      ]
+    },
+    {
+      "columna": "koi_period_err1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 7448,
+      "n_missing": 454,
+      "pct_missing": 4.75,
+      "ejemplos": [
+        "2.775e-05",
+        "0.0002479",
+        "1.494e-05",
+        "2.63e-07"
+      ]
+    },
+    {
+      "columna": "koi_period_err2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 7448,
+      "n_missing": 454,
+      "pct_missing": 4.75,
+      "ejemplos": [
+        "-2.775e-05",
+        "-0.0002479",
+        "-1.494e-05",
+        "-2.63e-07"
+      ]
+    },
+    {
+      "columna": "koi_time0bk_err1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2530,
+      "n_missing": 454,
+      "pct_missing": 4.75,
+      "ejemplos": [
+        "0.00216",
+        "0.00352",
+        "0.000581",
+        "0.000115"
+      ]
+    },
+    {
+      "columna": "koi_time0bk_err2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2530,
+      "n_missing": 454,
+      "pct_missing": 4.75,
+      "ejemplos": [
+        "-0.00216",
+        "-0.00352",
+        "-0.000581",
+        "-0.000115"
+      ]
+    },
+    {
+      "columna": "koi_depth",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 6947,
+      "n_missing": 363,
+      "pct_missing": 3.8,
+      "ejemplos": [
+        "615.8",
+        "874.8",
+        "10829.0",
+        "8079.2"
+      ]
+    },
+    {
+      "columna": "koi_impact",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2406,
+      "n_missing": 363,
+      "pct_missing": 3.8,
+      "ejemplos": [
+        "0.146",
+        "0.586",
+        "0.969",
+        "1.276"
+      ]
+    },
+    {
+      "columna": "koi_model_snr",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2740,
+      "n_missing": 363,
+      "pct_missing": 3.8,
+      "ejemplos": [
+        "35.8",
+        "25.8",
+        "76.3",
+        "505.6"
+      ]
+    },
+    {
+      "columna": "koi_prad_err1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 1787,
+      "n_missing": 363,
+      "pct_missing": 3.8,
+      "ejemplos": [
+        "0.26",
+        "0.32",
+        "3.92",
+        "8.5"
+      ]
+    },
+    {
+      "columna": "koi_prad_err2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 1561,
+      "n_missing": 363,
+      "pct_missing": 3.8,
+      "ejemplos": [
+        "-0.15",
+        "-0.19",
+        "-1.31",
+        "-2.83"
+      ]
+    },
+    {
+      "columna": "koi_slogg",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 1557,
+      "n_missing": 363,
+      "pct_missing": 3.8,
+      "ejemplos": [
+        "4.467",
+        "4.544",
+        "4.564",
+        "4.438"
+      ]
+    },
+    {
+      "columna": "koi_srad",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2289,
+      "n_missing": 363,
+      "pct_missing": 3.8,
+      "ejemplos": [
+        "0.927",
+        "0.868",
+        "0.791",
+        "1.046"
+      ]
+    },
+    {
+      "columna": "koi_steff",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2445,
+      "n_missing": 363,
+      "pct_missing": 3.8,
+      "ejemplos": [
+        "5455.0",
+        "5853.0",
+        "5805.0",
+        "6031.0"
+      ]
+    },
+    {
+      "columna": "koi_teq",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2511,
+      "n_missing": 363,
+      "pct_missing": 3.8,
+      "ejemplos": [
+        "793.0",
+        "443.0",
+        "638.0",
+        "1395.0"
+      ]
+    },
+    {
+      "columna": "koi_insol",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 7801,
+      "n_missing": 321,
+      "pct_missing": 3.36,
+      "ejemplos": [
+        "93.59",
+        "9.11",
+        "39.3",
+        "891.96"
+      ]
+    },
+    {
+      "columna": "koi_insol_err1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 7130,
+      "n_missing": 321,
+      "pct_missing": 3.36,
+      "ejemplos": [
+        "29.45",
+        "2.87",
+        "31.04",
+        "668.95"
+      ]
+    }
+  ],
+  "attribute_types_pscomppars": [
+    {
+      "columna": "pl_eqtlim",
+      "dtype_pandas": "float64",
+      "tipo_dato": "binario",
+      "uso": "analisis",
+      "n_unique": 2,
+      "n_missing": 1601,
+      "pct_missing": 25.45,
+      "ejemplos": [
+        "0.0",
+        "1.0"
+      ]
+    },
+    {
+      "columna": "pl_orbsmaxlim",
+      "dtype_pandas": "float64",
+      "tipo_dato": "binario",
+      "uso": "analisis",
+      "n_unique": 2,
+      "n_missing": 424,
+      "pct_missing": 6.74,
+      "ejemplos": [
+        "0.0",
+        "-1.0"
+      ]
+    },
+    {
+      "columna": "pl_orbperlim",
+      "dtype_pandas": "float64",
+      "tipo_dato": "binario",
+      "uso": "analisis",
+      "n_unique": 2,
+      "n_missing": 340,
+      "pct_missing": 5.4,
+      "ejemplos": [
+        "0.0",
+        "-1.0"
+      ]
+    },
+    {
+      "columna": "st_logglim",
+      "dtype_pandas": "float64",
+      "tipo_dato": "binario",
+      "uso": "analisis",
+      "n_unique": 2,
+      "n_missing": 322,
+      "pct_missing": 5.12,
+      "ejemplos": [
+        "0.0",
+        "-1.0"
+      ]
+    },
+    {
+      "columna": "st_tefflim",
+      "dtype_pandas": "float64",
+      "tipo_dato": "binario",
+      "uso": "analisis",
+      "n_unique": 2,
+      "n_missing": 294,
+      "pct_missing": 4.67,
+      "ejemplos": [
+        "0.0",
+        "1.0"
+      ]
+    },
+    {
+      "columna": "pl_radelim",
+      "dtype_pandas": "float64",
+      "tipo_dato": "binario",
+      "uso": "analisis",
+      "n_unique": 2,
+      "n_missing": 50,
+      "pct_missing": 0.79,
+      "ejemplos": [
+        "0.0",
+        "-1.0"
+      ]
+    },
+    {
+      "columna": "pl_radjlim",
+      "dtype_pandas": "float64",
+      "tipo_dato": "binario",
+      "uso": "analisis",
+      "n_unique": 2,
+      "n_missing": 50,
+      "pct_missing": 0.79,
+      "ejemplos": [
+        "0.0",
+        "-1.0"
+      ]
+    },
+    {
+      "columna": "pl_controv_flag",
+      "dtype_pandas": "int64",
+      "tipo_dato": "binario",
+      "uso": "analisis",
+      "n_unique": 2,
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "ejemplos": [
+        "0",
+        "1"
+      ]
+    },
+    {
+      "columna": "ttv_flag",
+      "dtype_pandas": "int64",
+      "tipo_dato": "binario",
+      "uso": "analisis",
+      "n_unique": 2,
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "ejemplos": [
+        "0",
+        "1"
+      ]
+    },
+    {
+      "columna": "st_spectype",
+      "dtype_pandas": "string",
+      "tipo_dato": "nominal",
+      "uso": "analisis",
+      "n_unique": 330,
+      "n_missing": 3967,
+      "pct_missing": 63.06,
+      "ejemplos": [
+        "G8 III",
+        "K4 III",
+        "K0 III",
+        "K0"
+      ]
+    },
+    {
+      "columna": "st_metratio",
+      "dtype_pandas": "string",
+      "tipo_dato": "nominal",
+      "uso": "analisis",
+      "n_unique": 3,
+      "n_missing": 656,
+      "pct_missing": 10.43,
+      "ejemplos": [
+        "[Fe/H]",
+        "[M/H]",
+        "[m/H]"
+      ]
+    },
+    {
+      "columna": "decstr",
+      "dtype_pandas": "string",
+      "tipo_dato": "nominal",
+      "uso": "analisis",
+      "n_unique": 4707,
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "ejemplos": [
+        "+17d47m35.71s",
+        "+71d49m26.19s",
+        "+39d14m09.01s",
+        "+43d48m58.90s"
+      ]
+    },
+    {
+      "columna": "disc_facility",
+      "dtype_pandas": "string",
+      "tipo_dato": "nominal",
+      "uso": "analisis",
+      "n_unique": 73,
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "ejemplos": [
+        "Xinglong Station",
+        "Thueringer Landessternwarte Tautenburg",
+        "Okayama Astrophysical Observatory",
+        "W. M. Keck Observatory"
+      ]
+    },
+    {
+      "columna": "discoverymethod",
+      "dtype_pandas": "string",
+      "tipo_dato": "nominal",
+      "uso": "analisis",
+      "n_unique": 11,
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "ejemplos": [
+        "Radial Velocity",
+        "Imaging",
+        "Eclipse Timing Variations",
+        "Microlensing"
+      ]
+    },
+    {
+      "columna": "pl_bmassprov",
+      "dtype_pandas": "string",
+      "tipo_dato": "nominal",
+      "uso": "analisis",
+      "n_unique": 4,
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "ejemplos": [
+        "Msini",
+        "Mass",
+        "Msin(i)/sin(i)",
+        "M-R relationship"
+      ]
+    },
+    {
+      "columna": "rastr",
+      "dtype_pandas": "string",
+      "tipo_dato": "nominal",
+      "uso": "analisis",
+      "n_unique": 4700,
+      "n_missing": 0,
+      "pct_missing": 0.0,
+      "ejemplos": [
+        "12h20m42.91s",
+        "15h17m05.90s",
+        "23h31m17.80s",
+        "16h10m24.50s"
+      ]
+    },
+    {
+      "columna": "pl_eqterr1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 328,
+      "n_missing": 4460,
+      "pct_missing": 70.89,
+      "ejemplos": [
+        "100.0",
+        "50.0",
+        "21.0",
+        "78.0"
+      ]
+    },
+    {
+      "columna": "pl_eqterr2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 327,
+      "n_missing": 4460,
+      "pct_missing": 70.89,
+      "ejemplos": [
+        "-100.0",
+        "-50.0",
+        "-5.0",
+        "-76.0"
+      ]
+    },
+    {
+      "columna": "pl_orbeccenerr1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 309,
+      "n_missing": 4411,
+      "pct_missing": 70.12,
+      "ejemplos": [
+        "0.007",
+        "0.03",
+        "0.0029",
+        "0.02"
+      ]
+    },
+    {
+      "columna": "pl_orbeccenerr2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 295,
+      "n_missing": 4411,
+      "pct_missing": 70.12,
+      "ejemplos": [
+        "-0.007",
+        "-0.03",
+        "-0.0029",
+        "-0.02"
+      ]
+    },
+    {
+      "columna": "pl_bmasseerr1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 1229,
+      "n_missing": 3274,
+      "pct_missing": 52.04,
+      "ejemplos": [
+        "39.09289406",
+        "794.575",
+        "36.2324384",
+        "413.1769291"
+      ]
+    },
+    {
+      "columna": "pl_bmasseerr2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 1171,
+      "n_missing": 3274,
+      "pct_missing": 52.04,
+      "ejemplos": [
+        "-39.72855088",
+        "-794.575",
+        "-38.77506565",
+        "-540.3082919"
+      ]
+    },
+    {
+      "columna": "pl_bmassjerr1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 987,
+      "n_missing": 3274,
+      "pct_missing": 52.04,
+      "ejemplos": [
+        "0.123",
+        "2.5",
+        "0.114",
+        "1.3"
+      ]
+    },
+    {
+      "columna": "pl_bmassjerr2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 932,
+      "n_missing": 3274,
+      "pct_missing": 52.04,
+      "ejemplos": [
+        "-0.125",
+        "-2.5",
+        "-0.122",
+        "-1.7"
+      ]
+    },
+    {
+      "columna": "pl_insolerr1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2707,
+      "n_missing": 2645,
+      "pct_missing": 42.04,
+      "ejemplos": [
+        "2.5",
+        "0.9",
+        "0.001",
+        "0.0045"
+      ]
+    },
+    {
+      "columna": "pl_insolerr2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 2674,
+      "n_missing": 2645,
+      "pct_missing": 42.04,
+      "ejemplos": [
+        "-2.4",
+        "-0.8",
+        "-0.001",
+        "-0.0007"
+      ]
+    },
+    {
+      "columna": "pl_orbsmaxerr1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 755,
+      "n_missing": 2362,
+      "pct_missing": 37.55,
+      "ejemplos": [
+        "0.0",
+        "0.07",
+        "0.039",
+        "0.03"
+      ]
+    },
+    {
+      "columna": "pl_orbsmaxerr2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 747,
+      "n_missing": 2362,
+      "pct_missing": 37.55,
+      "ejemplos": [
+        "0.0",
+        "-0.07",
+        "-0.041",
+        "-0.03"
+      ]
+    },
+    {
+      "columna": "pl_radeerr1",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 901,
+      "n_missing": 1935,
+      "pct_missing": 30.76,
+      "ejemplos": [
+        "0.33627",
+        "0.33626942",
+        "0.029",
+        "0.29"
+      ]
+    },
+    {
+      "columna": "pl_radeerr2",
+      "dtype_pandas": "float64",
+      "tipo_dato": "numerico",
+      "uso": "analisis",
+      "n_unique": 849,
+      "n_missing": 1935,
+      "pct_missing": 30.76,
+      "ejemplos": [
+        "-0.33627",
+        "-0.33626942",
+        "-0.44835923",
+        "-0.029"
+      ]
+    }
+  ],
+  "missing_kepler_top": [
+    {
+      "n_missing": 9564.0,
+      "pct_missing": 100.0
+    },
+    {
+      "n_missing": 9564.0,
+      "pct_missing": 100.0
+    },
+    {
+      "n_missing": 6817.0,
+      "pct_missing": 71.28
+    },
+    {
+      "n_missing": 1510.0,
+      "pct_missing": 15.79
+    },
+    {
+      "n_missing": 483.0,
+      "pct_missing": 5.05
+    },
+    {
+      "n_missing": 468.0,
+      "pct_missing": 4.89
+    },
+    {
+      "n_missing": 468.0,
+      "pct_missing": 4.89
+    },
+    {
+      "n_missing": 468.0,
+      "pct_missing": 4.89
+    },
+    {
+      "n_missing": 468.0,
+      "pct_missing": 4.89
+    },
+    {
+      "n_missing": 468.0,
+      "pct_missing": 4.89
+    },
+    {
+      "n_missing": 454.0,
+      "pct_missing": 4.75
+    },
+    {
+      "n_missing": 454.0,
+      "pct_missing": 4.75
+    }
+  ],
+  "missing_pscomppars_top": [
+    {
+      "n_missing": 4460.0,
+      "pct_missing": 70.89
+    },
+    {
+      "n_missing": 4460.0,
+      "pct_missing": 70.89
+    },
+    {
+      "n_missing": 4411.0,
+      "pct_missing": 70.12
+    },
+    {
+      "n_missing": 4411.0,
+      "pct_missing": 70.12
+    },
+    {
+      "n_missing": 3967.0,
+      "pct_missing": 63.06
+    },
+    {
+      "n_missing": 3274.0,
+      "pct_missing": 52.04
+    },
+    {
+      "n_missing": 3274.0,
+      "pct_missing": 52.04
+    },
+    {
+      "n_missing": 3274.0,
+      "pct_missing": 52.04
+    },
+    {
+      "n_missing": 3274.0,
+      "pct_missing": 52.04
+    },
+    {
+      "n_missing": 2645.0,
+      "pct_missing": 42.04
+    },
+    {
+      "n_missing": 2645.0,
+      "pct_missing": 42.04
+    },
+    {
+      "n_missing": 2362.0,
+      "pct_missing": 37.55
+    }
+  ],
+  "numeric_summary_kepler": [
+    {
+      "count": 9564.0,
+      "mean": 75.671,
+      "std": 1334.744,
+      "min": 0.242,
+      "25%": 2.734,
+      "50%": 9.753,
+      "75%": 40.715,
+      "max": 129995.778
+    },
+    {
+      "count": 9201.0,
+      "mean": 0.735,
+      "std": 3.349,
+      "min": 0.0,
+      "25%": 0.197,
+      "50%": 0.537,
+      "75%": 0.889,
+      "max": 100.806
+    },
+    {
+      "count": 9564.0,
+      "mean": 5.622,
+      "std": 6.472,
+      "min": 0.052,
+      "25%": 2.438,
+      "50%": 3.793,
+      "75%": 6.276,
+      "max": 138.54
+    },
+    {
+      "count": 9201.0,
+      "mean": 23791.336,
+      "std": 82242.683,
+      "min": 0.0,
+      "25%": 159.9,
+      "50%": 421.1,
+      "75%": 1473.4,
+      "max": 1541400.0
+    },
+    {
+      "count": 9201.0,
+      "mean": 102.892,
+      "std": 3077.639,
+      "min": 0.08,
+      "25%": 1.4,
+      "50%": 2.39,
+      "75%": 14.93,
+      "max": 200346.0
+    },
+    {
+      "count": 9201.0,
+      "mean": 1085.386,
+      "std": 856.351,
+      "min": 25.0,
+      "25%": 539.0,
+      "50%": 878.0,
+      "75%": 1379.0,
+      "max": 14667.0
+    },
+    {
+      "count": 9243.0,
+      "mean": 7745.737,
+      "std": 159204.665,
+      "min": 0.0,
+      "25%": 20.15,
+      "50%": 141.6,
+      "75%": 870.29,
+      "max": 10947554.55
+    },
+    {
+      "count": 9201.0,
+      "mean": 259.895,
+      "std": 795.807,
+      "min": 0.0,
+      "25%": 12.0,
+      "50%": 23.0,
+      "75%": 78.0,
+      "max": 9054.7
+    },
+    {
+      "count": 9201.0,
+      "mean": 5706.823,
+      "std": 796.858,
+      "min": 2661.0,
+      "25%": 5310.0,
+      "50%": 5767.0,
+      "75%": 6112.0,
+      "max": 15896.0
+    },
+    {
+      "count": 9201.0,
+      "mean": 4.31,
+      "std": 0.433,
+      "min": 0.047,
+      "25%": 4.218,
+      "50%": 4.438,
+      "75%": 4.543,
+      "max": 5.364
+    },
+    {
+      "count": 9201.0,
+      "mean": 1.729,
+      "std": 6.127,
+      "min": 0.109,
+      "25%": 0.829,
+      "50%": 1.0,
+      "75%": 1.345,
+      "max": 229.908
+    },
+    {
+      "count": 9564.0,
+      "mean": 292.06,
+      "std": 4.767,
+      "min": 279.853,
+      "25%": 288.661,
+      "50%": 292.261,
+      "75%": 295.859,
+      "max": 301.721
+    },
+    {
+      "count": 9564.0,
+      "mean": 43.81,
+      "std": 3.601,
+      "min": 36.577,
+      "25%": 40.777,
+      "50%": 43.678,
+      "75%": 46.715,
+      "max": 52.336
+    },
+    {
+      "count": 9563.0,
+      "mean": 14.265,
+      "std": 1.385,
+      "min": 6.966,
+      "25%": 13.44,
+      "50%": 14.52,
+      "75%": 15.322,
+      "max": 20.003
+    }
+  ],
+  "outliers_iqr_kepler": [
+    {
+      "columna": "koi_depth",
+      "outliers": 1798,
+      "pct_outliers": 18.8,
+      "min": 0.0,
+      "mediana": 421.1,
+      "max": 1541400.0
+    },
+    {
+      "columna": "koi_model_snr",
+      "outliers": 1600,
+      "pct_outliers": 16.73,
+      "min": 0.0,
+      "mediana": 23.0,
+      "max": 9054.7
+    },
+    {
+      "columna": "koi_period",
+      "outliers": 1567,
+      "pct_outliers": 16.38,
+      "min": 0.241842544,
+      "mediana": 9.75283067,
+      "max": 129995.7784
+    },
+    {
+      "columna": "koi_prad",
+      "outliers": 1469,
+      "pct_outliers": 15.36,
+      "min": 0.08,
+      "mediana": 2.39,
+      "max": 200346.0
+    },
+    {
+      "columna": "koi_insol",
+      "outliers": 1438,
+      "pct_outliers": 15.04,
+      "min": 0.0,
+      "mediana": 141.6,
+      "max": 10947554.55
+    },
+    {
+      "columna": "koi_srad",
+      "outliers": 985,
+      "pct_outliers": 10.3,
+      "min": 0.109,
+      "mediana": 1.0,
+      "max": 229.908
+    },
+    {
+      "columna": "koi_duration",
+      "outliers": 869,
+      "pct_outliers": 9.09,
+      "min": 0.052,
+      "mediana": 3.7926,
+      "max": 138.54
+    },
+    {
+      "columna": "koi_slogg",
+      "outliers": 663,
+      "pct_outliers": 6.93,
+      "min": 0.047,
+      "mediana": 4.438,
+      "max": 5.364
+    },
+    {
+      "columna": "koi_steff",
+      "outliers": 552,
+      "pct_outliers": 5.77,
+      "min": 2661.0,
+      "mediana": 5767.0,
+      "max": 15896.0
+    },
+    {
+      "columna": "koi_teq",
+      "outliers": 411,
+      "pct_outliers": 4.3,
+      "min": 25.0,
+      "mediana": 878.0,
+      "max": 14667.0
+    },
+    {
+      "columna": "koi_kepmag",
+      "outliers": 156,
+      "pct_outliers": 1.63,
+      "min": 6.966,
+      "mediana": 14.52,
+      "max": 20.003
+    },
+    {
+      "columna": "koi_impact",
+      "outliers": 82,
+      "pct_outliers": 0.86,
+      "min": 0.0,
+      "mediana": 0.537,
+      "max": 100.806
+    },
+    {
+      "columna": "ra",
+      "outliers": 0,
+      "pct_outliers": 0.0,
+      "min": 279.85272,
+      "mediana": 292.261125,
+      "max": 301.72076
+    },
+    {
+      "columna": "dec",
+      "outliers": 0,
+      "pct_outliers": 0.0,
+      "min": 36.577381,
+      "mediana": 43.6775035,
+      "max": 52.33601
+    }
+  ],
+  "class_distribution": [
+    {
+      "clase": "FALSE POSITIVE",
+      "n": 4839,
+      "pct": 50.6
+    },
+    {
+      "clase": "CONFIRMED",
+      "n": 2747,
+      "pct": 28.72
+    },
+    {
+      "clase": "CANDIDATE",
+      "n": 1978,
+      "pct": 20.68
+    }
+  ],
+  "radius_correlations": [
+    {
+      "variable": "koi_impact",
+      "correlacion_con_koi_prad": 0.6773803638093165
+    },
+    {
+      "variable": "koi_slogg",
+      "correlacion_con_koi_prad": -0.09732924172035992
+    },
+    {
+      "variable": "koi_srad",
+      "correlacion_con_koi_prad": 0.05666893005317175
+    },
+    {
+      "variable": "koi_duration",
+      "correlacion_con_koi_prad": 0.03657289317719626
+    },
+    {
+      "variable": "koi_kepmag",
+      "correlacion_con_koi_prad": -0.022565332094394996
+    },
+    {
+      "variable": "koi_steff",
+      "correlacion_con_koi_prad": -0.013025142636395792
+    },
+    {
+      "variable": "ra",
+      "correlacion_con_koi_prad": 0.008716426800453302
+    },
+    {
+      "variable": "koi_period",
+      "correlacion_con_koi_prad": 0.0051347515652607175
+    },
+    {
+      "variable": "dec",
+      "correlacion_con_koi_prad": 0.0030374522705224017
+    },
+    {
+      "variable": "koi_insol",
+      "correlacion_con_koi_prad": 0.0029892574839722862
+    },
+    {
+      "variable": "koi_depth",
+      "correlacion_con_koi_prad": 0.00255818254146202
+    },
+    {
+      "variable": "koi_model_snr",
+      "correlacion_con_koi_prad": -0.0017463393185656957
+    },
+    {
+      "variable": "koi_teq",
+      "correlacion_con_koi_prad": -0.0012490349579593236
+    }
+  ],
+  "preprocessing_decisions": {
+    "excluded_identifiers": [
+      "kepid",
+      "kepoi_name",
+      "kepler_name"
+    ],
+    "excluded_leakage": [
+      "koi_score",
+      "koi_pdisposition",
+      "koi_fpflag_nt",
+      "koi_fpflag_ss",
+      "koi_fpflag_co",
+      "koi_fpflag_ec"
+    ],
+    "classification_features": [
+      "koi_period",
+      "koi_impact",
+      "koi_duration",
+      "koi_depth",
+      "koi_teq",
+      "koi_insol",
+      "koi_model_snr",
+      "koi_steff",
+      "koi_slogg",
+      "koi_srad",
+      "ra",
+      "dec",
+      "koi_kepmag"
+    ],
+    "regression_features": [
+      "koi_period",
+      "koi_impact",
+      "koi_duration",
+      "koi_teq",
+      "koi_insol",
+      "koi_model_snr",
+      "koi_steff",
+      "koi_slogg",
+      "ra",
+      "dec",
+      "koi_kepmag"
+    ],
+    "split": "train_test_split antes de ajustar imputacion/escalado en los pipelines de modelado",
+    "scaling": "SimpleImputer(strategy='median') + StandardScaler dentro de Pipeline"
+  },
+  "split_shapes": {
+    "classification": {
+      "X_train": [
+        7651,
+        13
+      ],
+      "X_test": [
+        1913,
+        13
+      ],
+      "y_train": [
+        7651
+      ],
+      "y_test": [
+        1913
+      ]
+    },
+    "regression": {
+      "X_train": [
+        7360,
+        11
+      ],
+      "X_test": [
+        1841,
+        11
+      ],
+      "y_train": [
+        7360
+      ],
+      "y_test": [
+        1841
+      ]
+    }
+  }
+}
