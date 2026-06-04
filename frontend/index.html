@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Exoplanetas Kepler</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Pipeline full stack</p>
+        <h1>Exoplanetas Kepler</h1>
+      </div>
+      <div class="status" id="apiStatus">Conectando...</div>
+    </header>
+
+    <main class="layout">
+      <section class="panel control-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Ejecucion</h2>
+            <p>Flujo reproducible ejecutado desde el backend.</p>
+          </div>
+          <button class="primary" id="runPipelineBtn">Ejecutar pipeline</button>
+        </div>
+        <div class="pipeline-grid" id="pipelineSummary"></div>
+      </section>
+
+      <section class="metric-grid" id="metricGrid"></section>
+
+      <section class="model-grid">
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Clasificacion</h2>
+              <p>Comparacion de algoritmos vistos en clase.</p>
+            </div>
+          </div>
+          <p class="decision" id="classificationDecision"></p>
+          <div class="table-wrap compact">
+            <table id="classificationMetricsTable"></table>
+          </div>
+          <h3>Matriz de confusion</h3>
+          <div class="table-wrap compact">
+            <table id="confusionMatrixTable"></table>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Regresion</h2>
+              <p>Estimacion del radio planetario en escala log.</p>
+            </div>
+          </div>
+          <p class="decision" id="regressionDecision"></p>
+          <div class="table-wrap compact">
+            <table id="regressionMetricsTable"></table>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Consultas OLAP</h2>
+            <p id="olapDescription">Warehouse DuckDB con tablas de hechos y dimensiones.</p>
+          </div>
+          <div class="inline-controls">
+            <select id="olapSelect"></select>
+            <button id="loadOlapBtn">Consultar</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="olapTable"></table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Evaluar candidato</h2>
+            <p>La app consulta clasificacion y radio estimado con los mismos datos de entrada.</p>
+          </div>
+        </div>
+        <form class="feature-form" id="predictionForm"></form>
+        <div class="prediction-actions">
+          <button class="primary" id="predictBtn">Evaluar</button>
+          <button id="resetBtn">Restaurar muestra</button>
+        </div>
+        <div class="prediction-output" id="predictionResult">
+          <p>Presiona Evaluar para obtener la clase estimada y el radio del candidato.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
