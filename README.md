@@ -28,10 +28,10 @@ backend/
     config.py                       Rutas, columnas y configuracion compartida
   data/
     raw/                            CSV crudos incluidos para reproducibilidad
-    processed/                      CSV generados por preprocesamiento
-    warehouse/                      Base DuckDB generada por el pipeline
-  models/                           Modelos generados por el pipeline
-  reports/                          JSON con resumenes y metricas
+    processed/                      CSV generados por preprocesamiento, no versionados
+    warehouse/                      Base DuckDB generada por el pipeline, no versionada
+  models/                           Modelos generados por el pipeline, no versionados
+  reports/                          JSON con resumenes y metricas, no versionados
 frontend/
   index.html                        Interfaz web
   styles.css                        Estilos
@@ -50,6 +50,10 @@ README.md                           Este archivo
 ## Reproduccion exacta desde cero
 
 Ejecutar todos los comandos desde la raiz del repositorio.
+
+El punto de partida reproducible son los CSV crudos en `backend/data/raw`. Los archivos de
+`backend/data/processed`, `backend/data/warehouse`, `backend/models` y `backend/reports` son
+salidas generadas: se pueden borrar y reconstruir con `python -m backend.pipeline.run_pipeline`.
 
 ### 1. Crear y activar entorno virtual
 
@@ -91,6 +95,13 @@ python -m backend.pipeline.download_data --force
 ### 3. Ejecutar el pipeline completo
 
 ```powershell
+python -m backend.pipeline.run_pipeline
+```
+
+Si se quiere comprobar que todo se reconstruye desde cero antes de ejecutar el pipeline:
+
+```powershell
+Remove-Item backend\data\processed, backend\data\warehouse, backend\models, backend\reports -Recurse -Force -ErrorAction SilentlyContinue
 python -m backend.pipeline.run_pipeline
 ```
 
@@ -248,4 +259,3 @@ Invoke-RestMethod `
 - Imputacion y escalado dentro de `Pipeline`, ajustados solo con train.
 - Clasificacion comparada con regresion logistica, K-NN, arbol de decision y Naive Bayes.
 - Regresion comparada con regresion lineal, Ridge y Lasso.
-
